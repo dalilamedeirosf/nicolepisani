@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-cardio.jpg";
 import heartImg from "@/assets/heart-detail.jpg";
+import draDesktop from "@/assets/dra-nicole-desktop.png.asset.json";
+import draMobile from "@/assets/dra-nicole-mobile.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -64,39 +66,41 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section id="top" className="relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 pt-36 pb-24 md:pt-44 md:pb-32 grid md:grid-cols-12 gap-12 items-center">
-          <div className="md:col-span-7">
+      <section id="top" className="relative min-h-screen overflow-hidden bg-[#e8e6e3]">
+        {/* Background image — doctor fills the background, anchored to the left */}
+        <picture>
+          <source media="(max-width: 767px)" srcSet={draMobile.url} />
+          <img
+            src={draDesktop.url}
+            alt="Dra. Nicole Pisani — cardiologista"
+            className="absolute inset-0 w-full h-full object-cover object-center md:object-left md:[transform:scaleX(-1)]"
+          />
+        </picture>
+
+        {/* Soft gradient so text stays readable on the right */}
+        <div className="absolute inset-0 bg-gradient-to-l from-[#e8e6e3] from-10% via-[#e8e6e3]/70 via-40% to-transparent md:via-30%" />
+
+        {/* Content — right side */}
+        <div className="relative mx-auto max-w-7xl px-6 pt-36 pb-20 md:pt-44 md:pb-32 min-h-screen flex items-center">
+          <div className="w-full md:w-1/2 md:ml-auto md:pl-8">
             <p className="text-xs uppercase tracking-[0.32em] text-accent mb-8 flex items-center gap-3">
               <span className="w-10 h-px bg-accent" /> Cardiologia · Rio de Janeiro
             </p>
-            <h1 className="font-serif text-5xl md:text-7xl leading-[1.02] text-primary text-balance">
+            <h1 className="font-serif text-4xl md:text-6xl leading-[1.05] text-primary text-balance">
               Cuidado cardiovascular <em className="italic text-accent">completo</em> para viver mais e viver melhor.
             </h1>
-            <p className="mt-8 text-lg text-foreground/70 max-w-xl leading-relaxed">
+            <p className="mt-8 text-base md:text-lg text-foreground/75 max-w-xl leading-relaxed">
               Seu coração merece atenção antes que os sinais apareçam. Acompanhamento humanizado, ético e baseado nas melhores evidências científicas.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-6">
+            <div className="mt-10">
               <a href={BOOKING_URL} target="_blank" rel="noopener"
-                className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 text-sm uppercase tracking-[0.18em] hover:bg-[color:var(--burgundy-deep)] transition">
+                className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-10 py-5 text-sm uppercase tracking-[0.2em] shadow-lg shadow-primary/20 hover:bg-[color:var(--burgundy-deep)] transition">
                 Agendar consulta
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>
               </a>
-              <a href="#sobre" className="text-sm tracking-wide text-primary border-b border-accent/60 pb-1 hover:border-accent">
-                Conheça o atendimento
-              </a>
-            </div>
-          </div>
-          <div className="md:col-span-5 relative">
-            <div className="aspect-[4/5] overflow-hidden border border-accent/30">
-              <img src={heroImg} alt="Estetoscópio sobre mármore — cardiologia premium" width={1536} height={1280} className="w-full h-full object-cover" />
-            </div>
-            <div className="absolute -bottom-6 -left-6 hidden md:block bg-background border border-accent/40 px-6 py-5 max-w-[220px]">
-              <p className="font-serif italic text-primary text-lg leading-snug">"Cada paciente possui uma história única."</p>
             </div>
           </div>
         </div>
-        <div className="hairline mx-auto max-w-7xl" />
       </section>
 
       {/* SILENT DISEASE */}
